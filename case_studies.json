@@ -1,0 +1,129 @@
+{
+  "case_studies": {
+    "anidesignit-portfolio": {
+      "name": "AniDesignIt Portfolio",
+      "slug": "anidesignit-portfolio",
+      "heroImage": "https://images.unsplash.com/photo-1559028012-481c04fa702d",
+      "subtitle": "My personal portfolio showcasing creative web design and UX case studies.",
+      "summary": "Dynamic portfolio website built with Astro, Strapi CMS, and Tailwind.",
+      "client": "Personal Project",
+      "year": "2025",
+      "role": "Designer & Front-End Developer",
+      "tools": [
+        "Figma",
+        "Astro",
+        "Tailwind",
+        "Strapi",
+        "Lottie"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1505685296765-3a2736de412f",
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+      ],
+      "body": "\n<h1>The Challenge</h1>\n<p>I wanted a portfolio that reflected both my technical and artistic side \u2014 dynamic, scrollable, and easy to update through a CMS.</p>\n<h1>The Solution</h1>\n<p>I built it from scratch using Astro + Firebase for dynamic content, with smooth Lottie animations and a horizontal scroll layout.</p>\n<h1>Results & Impact</h1>\n<p>The result was a fast, visually engaging website that streamlined my case study workflow and improved SEO performance.</p>\n<h1>Testimonial</h1>\n<p>\u201cThis project represents my journey as a designer \u2014 where code meets creativity.\u201d</p>\n"
+    },
+    "zolu-ai-assistant": {
+      "name": "Zolu \u2013 AI Assistant for ADHD",
+      "slug": "zolu-ai-assistant",
+      "heroImage": "https://images.unsplash.com/photo-1581091870622-7c8a9a7a7b5b",
+      "subtitle": "An AI-powered personal assistant that helps ADHD users organize their lives.",
+      "summary": "App design and prototype created with empathy and AI to support focus and time management.",
+      "client": "Personal Project",
+      "year": "2025",
+      "role": "UI/UX Designer & Product Creator",
+      "tools": [
+        "Figma",
+        "Bolt",
+        "Runway",
+        "ElevenLabs"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1590608897129-79da98d1591e",
+        "https://images.unsplash.com/photo-1603791452906-c786df99c7f5"
+      ],
+      "body": "\n<h1>The Challenge</h1>\n<p>People with ADHD often struggle with time management and focus. The goal was to design a calm, conversational assistant to help.</p>\n<h1>The Solution</h1>\n<p>I designed an interface with mood tracking, Pomodoro timers, and a soft voice AI experience using ElevenLabs.</p>\n<h1>Results & Impact</h1>\n<p>The prototype established a strong emotional connection through tone and UX consistency. The MVP is now ready for developer handoff.</p>\n<h1>Testimonial</h1>\n<p>\u201cZolu feels like a friend that listens \u2014 not just another productivity app.\u201d</p>\n"
+    },
+    "louise-lee-website": {
+      "name": "Louise Lee Website",
+      "slug": "louise-lee-website",
+      "heroImage": "https://images.unsplash.com/photo-1607082349566-187342e1a26a",
+      "subtitle": "An elegant website for a life and leadership coach in Vancouver.",
+      "summary": "12-page website redesign with soft typography and earthy tones to reflect Louise\u2019s coaching style.",
+      "client": "Louise Lee Coaching",
+      "year": "2024",
+      "role": "Web Designer & Developer",
+      "tools": [
+        "Figma",
+        "Webflow",
+        "Lottie",
+        "Illustrator"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+        "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5"
+      ],
+      "body": "\n<h1>The Challenge</h1>\n<p>Louise\u2019s old website lacked visual clarity and didn\u2019t convey her warmth.</p>\n<h1>The Solution</h1>\n<p>I redesigned the site using calm colors and elegant layouts to inspire confidence and trust.</p>\n<h1>Results & Impact</h1>\n<p>Bookings increased and her clients reported a stronger sense of connection with her brand.</p>\n<h1>Testimonial</h1>\n<p>\u201cAna captured my voice and message beautifully \u2014 my new site finally feels like me.\u201d \u2013 Louise Lee</p>\n"
+    },
+    "ghg-accounting-website": {
+      "name": "GHG Accounting Website",
+      "slug": "ghg-accounting-website",
+      "heroImage": "https://images.unsplash.com/photo-1560264357-8d9202250f21",
+      "subtitle": "Corporate website redesign for a sustainability consulting firm.",
+      "summary": "Website with Lottie animations, multi-language support, and modern structure.",
+      "client": "GHG Accounting Ltd.",
+      "year": "2025",
+      "role": "UI/UX Designer & Web Developer",
+      "tools": [
+        "Webflow",
+        "Figma",
+        "Lottie"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1579546928687-c667e6b8a9e1",
+        "https://images.unsplash.com/photo-1565372918670-cb1b6e90b70d"
+      ],
+      "body": "\n<h1>The Challenge</h1>\n<p>GHG needed a professional yet innovative website to reflect their environmental mission.</p>\n<h1>The Solution</h1>\n<p>I built it in Webflow using green tones, structured layouts, and interactive animations.</p>\n<h1>Results & Impact</h1>\n<p>The site boosted SEO rankings and helped attract international partners through clearer storytelling.</p>\n<h1>Testimonial</h1>\n<p>\u201cAna brought clarity and creativity to a complex industry \u2014 the result speaks for itself.\u201d</p>\n"
+    },
+    "marquess-coffee": {
+      "name": "Marquess Coffee",
+      "slug": "marquess-coffee",
+      "heroImage": "https://images.unsplash.com/photo-1511920170033-f8396924c348",
+      "subtitle": "Branding and e-commerce for a premium coffee brand.",
+      "summary": "Complete branding and Webflow e-commerce setup with Ecwid integration.",
+      "client": "Marquess Coffee",
+      "year": "2024",
+      "role": "Brand Designer & Web Developer",
+      "tools": [
+        "Figma",
+        "Webflow",
+        "Ecwid",
+        "Illustrator"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+        "https://images.unsplash.com/photo-1510626176961-4b57d4fbad03"
+      ],
+      "body": "\n<h1>The Challenge</h1>\n<p>Marquess needed a strong brand and online store to showcase Brazilian coffee products.</p>\n<h1>The Solution</h1>\n<p>I created their brand identity, packaging design, and developed an e-commerce website on Webflow.</p>\n<h1>Results & Impact</h1>\n<p>The cohesive brand boosted early customer trust and online engagement.</p>\n<h1>Testimonial</h1>\n<p>\u201cAna turned my vision into a brand I\u2019m proud of \u2014 everything feels authentic.\u201d \u2013 Gabby Oliveira</p>\n"
+    },
+    "daniel-pinto-portfolio": {
+      "name": "Daniel Pinto Portfolio",
+      "slug": "daniel-pinto-portfolio",
+      "heroImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+      "subtitle": "Minimal portfolio for a multidisciplinary artist.",
+      "summary": "Clean and fast website showcasing Daniel\u2019s art and photography.",
+      "client": "Daniel Pinto",
+      "year": "2025",
+      "role": "Web Designer",
+      "tools": [
+        "Figma",
+        "Webflow",
+        "Photoshop"
+      ],
+      "gallery": [
+        "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0",
+        "https://images.unsplash.com/photo-1534791547700-9f17f2e9c89a"
+      ],
+      "body": "\n<h1>The Challenge</h1>\n<p>Daniel needed a modern portfolio that focused on his art without distractions.</p>\n<h1>The Solution</h1>\n<p>I designed a fullscreen gallery layout with smooth transitions and easy navigation.</p>\n<h1>Results & Impact</h1>\n<p>The new site improved engagement and delivered fast load times with optimized visuals.</p>\n<h1>Testimonial</h1>\n<p>\u201cAna delivered exactly what I envisioned \u2014 clean, impactful, and modern.\u201d \u2013 Daniel Pinto</p>\n"
+    }
+  }
+}

@@ -1,0 +1,687 @@
+---
+// This is the Astro "frontmatter". You can write JavaScript/TypeScript here.
+// For now, it can be empty.
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  
+    <title>AniDesignIt</title>
+
+    {/* This is your original data URI favicon. It works perfectly in Astro. */}
+    <link rel="icon" href="data:image/svg+xml,%3Csvg width='71' height='63' viewBox='0 0 71 63' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='4' width='47' height='41' stroke='%23FF725E' stroke-linejoin='round'/%3E%3Crect x='0.5' y='39.5' width='7.07343' height='7.45789' fill='white' stroke='%23FF725E'/%3E%3Crect x='0.5' y='0.5' width='7.07343' height='7.45789' fill='white' stroke='%23FF725E'/%3E%3Crect x='47.5' y='0.5' width='7.07343' height='7.45789' fill='white' stroke='%23FF725E'/%3E%3Crect x='47.5' y='41.5' width='7.07343' height='7.45789' fill='white' stroke='%23FF725E'/%3E%3Cpath d='M51 44.9758L59.5455 62.1185L61.1129 53.2695L68.0829 48.9671L51 44.9758Z' fill='%23263238'/%3E%3Cpath d='M10 41.8316V39.5033L11.8798 39.1707C12.4582 39.044 12.9241 38.8222 13.2776 38.5054C13.631 38.157 13.9684 37.5076 14.2898 36.5573L24.4599 8H31.3043L41.5226 36.6523C41.8439 37.5709 42.1331 38.1887 42.3902 38.5054C42.6794 38.8222 43.1774 39.044 43.8844 39.1707L45.5232 39.5033V41.8316H29.9065V39.5033L32.0754 39.2182C32.7181 39.1231 33.1037 38.9014 33.2322 38.5529C33.3608 38.1728 33.3126 37.571 33.0876 36.7473L31.2561 31.0929H19.6881L17.8565 36.5573C17.5995 37.3175 17.5352 37.9352 17.6637 38.4104C17.7923 38.8539 18.2743 39.139 19.1097 39.2657L21.3751 39.5508V41.8316H10ZM20.6039 28.432H30.4367L25.7613 13.6544H25.5685L20.6039 28.432Z' fill='%23263238'/%3E%3C/svg%3E">
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+  />
+    {/* Tailwind CSS script - note that after running `npx astro add tailwind`, this line is no longer needed as Astro handles Tailwind automatically. You can safely remove it. */}
+  
+
+    {/* Lottie player scripts */}
+    <script type="module" src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"></script>
+    <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js"></script>
+
+    {/* Google Fonts */}
+    <link href="https://fonts.googleapis.com/css2?family=Literata:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    {/* Use is:global to make sure these styles apply to all pages using this layout */}
+    <style is:global>
+        :root {
+          --bg-color: #FFEBE5;
+          --primary-color: #FF725E;
+          --secondary-color: #3F4142;
+          --title-font: 'Literata', serif;
+          --paragraph-font: 'Open Sans', sans-serif;
+        }
+        
+        /* 🔧 Reset y scroll */
+        html, body {
+          scroll-behavior: smooth;
+          max-width: 100%;
+          overflow-x: hidden; /* quitar scroll horizontal */
+        }
+        
+        body {
+          background-color: var(--bg-color);
+          color: var(--secondary-color);
+          font-family: var(--paragraph-font);
+          overflow-y: hidden; /* en desktop */
+        }
+        
+        /* Main container */
+        .main-container {
+          display: flex;
+          width: max-content;
+          height: 100vh;
+          transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .section {
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 2rem 0;
+          position: relative;
+          opacity: 0;
+          transform: translateX(20px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .container {
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 2rem;
+          position: relative;
+        }
+        
+        .section.active {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        
+        h1, h2, h3 {
+          font-family: var(--title-font);
+          color: var(--secondary-color);
+        }
+        
+        .primary-btn, .secondary-btn {
+          padding: 1rem 2rem;
+          border-radius: 9999px;
+          font-weight: bold;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          border: 2px solid var(--primary-color);
+          font-size: 1rem;
+        }
+        .primary-btn {
+          background-color: transparent;
+          color: var(--primary-color);
+        }
+        .primary-btn:hover {
+          background-color: var(--primary-color);
+          color: white;
+        }
+        .secondary-btn {
+          background-color: var(--primary-color);
+          color: white;
+        }
+        .secondary-btn:hover {
+          background-color: transparent;
+          color: var(--primary-color);
+        }
+        
+        /* Header y logo */
+        header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 2rem 4rem;
+          z-index: 100;
+        }
+        .logo {
+          display: flex;
+          align-items: center;
+          max-width: 180px;
+        }
+        .logo svg {
+          width: 100%;
+          height: auto;
+        }
+        
+        .desktop-nav {
+          display: flex;
+        }
+        .desktop-nav a {
+          margin-left: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: color 0.3s ease;
+        }
+        .desktop-nav a:hover, .desktop-nav a.active {
+          color: var(--primary-color);
+        }
+        
+        /* Redes sociales */
+        .social-media {
+          position: fixed;
+          top: 140px;
+          left: 4rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          z-index: 100;
+        }
+        .social-media a {
+          transition: transform 0.3s ease;
+        }
+        .social-media a:hover {
+          transform: scale(1.2);
+        }
+        
+        /* Títulos de sección */
+        .section-title {
+          position: absolute;
+          bottom: 1rem;
+          left: 2rem;
+          font-size: 4.5rem;
+          font-family: var(--title-font);
+          color: var(--secondary-color);
+          opacity: 0.1;
+          z-index: -1;
+          text-transform: uppercase;
+        }
+        
+        /* Grids */
+        .work-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          width: 100%;
+        }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          width: 100%;
+        }
+        .service-item {
+          text-align: left;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .service-item.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .service-item .service-title {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.5rem;
+        }
+        .service-item .service-title h3 {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        
+        /* About */
+        .about-content {
+          display: flex;
+          align-items: center;
+          gap: 4rem;
+          width: 100%;
+        }
+        .about-photo-container {
+          position: relative;
+          width: 280px;
+          height: 280px;
+          flex-shrink: 0;
+        }
+        .about-photo-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: relative;
+          z-index: 2;
+        }
+        .about-photo-container dotlottie-player {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 160%;
+          height: 160%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+        }
+        
+        /* Contacto */
+        .contact-form {
+          width: 100%;
+          max-width: 600px;
+        }
+        .contact-form input, .contact-form textarea {
+          width: 100%;
+          padding: 1rem;
+          margin-bottom: 1rem;
+          border: 2px solid var(--secondary-color);
+          border-radius: 0.5rem;
+          background-color: transparent;
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+          color: var(--secondary-color);
+          opacity: 0.7;
+        }
+        
+        /* Mobile menu hidden by default */
+        .hamburger-btn, .mobile-nav {
+          display: none;
+        }
+        
+        /* ====== MEDIA QUERIES ====== */
+        
+        /* Tablets */
+        @media (max-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .work-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+          body {
+            overflow-y: auto;
+            overflow-x: hidden;
+          }
+          .main-container {
+            width: 100%;
+            height: auto;
+            flex-direction: column;
+            transform: none !important;
+            max-width: 100%;
+            overflow-x: hidden;
+          }
+          .section {
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            padding: 8rem 1.5rem 4rem 1.5rem;
+            opacity: 1 !important;
+            transform: none !important;
+            box-sizing: border-box;
+          }
+          .container {
+            max-width: 100%;
+            padding: 0 1.5rem;
+          }
+          header {
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 235, 229, 0.9);
+            backdrop-filter: blur(5px);
+          }
+          .logo {
+            max-width: 140px;
+          }
+          .desktop-nav { display: none; }
+          .hamburger-btn {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+          }
+          .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+          }
+          .mobile-nav.open { transform: translateX(0); }
+          .mobile-nav a {
+            font-size: 2rem;
+            font-family: var(--title-font);
+            color: var(--secondary-color);
+          }
+          .mobile-nav .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+          }
+          .social-media {
+            top: auto;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            flex-direction: row;
+            gap: 1.5rem;
+            background: rgba(255, 235, 229, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+          }
+          .section-title {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0.1;
+          }
+          .grid {
+            grid-template-columns: 1fr !important;
+            text-align: center;
+          }
+          #index .grid > div:first-child,
+          #contact .grid > div:first-child {
+            order: 2;
+            text-align: center;
+          }
+          #index .grid > div:last-child,
+          #contact .grid > div:last-child {
+            order: 1;
+            margin-bottom: 2rem;
+          }
+          .work-grid, .services-grid {
+            grid-template-columns: 1fr;
+          }
+          .about-content {
+            flex-direction: column;
+            text-align: center;
+          }
+          .contact-form { margin: 0 auto; }
+          .absolute.bottom-10.right-10 { display: none; }
+          #contact .absolute {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            text-align: center;
+            margin-top: 3rem;
+          }
+        
+          /* 🔧 Botones en mobile apilados */
+          .flex.gap-4 {
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+          }
+          .flex.gap-4 a {
+            width: 100%;
+            text-align: center;
+          }
+        }
+        
+        /* <= 740px */
+        @media (max-width: 740px) {
+          header { padding: 0.75rem 1rem; }
+          .logo { max-width: 120px; }
+        }
+        
+        /* <= 400px */
+        @media (max-width: 400px) {
+          .logo { max-width: 100px; }
+          .primary-btn, .secondary-btn {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+          }
+        }
+        
+        /* 🔧 Fix para Services en mobile */
+        @media (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem;
+          }
+          .service-item {
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+
+     
+          
+        /* 🔧 Fix para centrar .section-title en mobile */
+            @media (max-width: 768px) {
+            .section-title {
+                position: relative;   /* ya no absoluto */
+                bottom: auto;
+                left: auto;
+                text-align: center;
+                width: 100%;
+                font-size: 2.5rem;   /* tamaño más legible en mobile */
+                margin: 0 auto 2rem auto;
+                z-index: 1;          /* que no quede atrás */
+                opacity: 0.2;        /* un poquito más visible */
+            }
+            }
+        </style>
+</head>
+<body>
+    {/* Header, Nav, and Social icons are fixed and will be part of every page */}
+    <header>
+        <a href="/" class="logo" onclick="window.location.reload();">
+                <svg width="100%" height="auto" viewBox="0 0 384 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3.22949" y="3.38318" width="353.616" height="67.6631" stroke="#FF725E" stroke-linejoin="round"/>
+                    <rect x="0.5" y="68.1631" width="7.07343" height="7.45789" fill="white" stroke="#FF725E"/>
+                    <rect x="0.5" y="0.5" width="7.07343" height="7.45789" fill="white" stroke="#FF725E"/>
+                    <rect x="352.502" y="0.5" width="7.07343" height="7.45789" fill="white" stroke="#FF725E"/>
+                    <rect x="352.502" y="68.1631" width="7.07343" height="7.45789" fill="white" stroke="#FF725E"/>
+                    <path d="M356.846 68.7117L368.491 92.0731L370.627 80.0139L380.126 74.1508L356.846 68.7117Z" fill="#263238"/>
+                    <path d="M345.007 49.2147C343.371 49.2147 341.973 48.944 340.814 48.4027C339.655 47.8614 338.769 47.0156 338.155 45.8653C337.576 44.7151 337.286 43.2434 337.286 41.4503V25.4142H333.707V22.9275C335.241 22.7246 336.451 22.3186 337.337 21.7096C338.224 21.0668 338.888 20.1364 339.331 18.9185C339.809 17.7006 340.15 16.1443 340.354 14.2498L344.649 13.6915L345.416 14.0975V22.4201H352.523V25.4142H345.416V40.1816C345.416 41.5349 345.638 42.5668 346.081 43.2772C346.524 43.9877 347.308 44.3429 348.433 44.3429C349.217 44.3429 349.967 44.2076 350.682 43.937C351.432 43.6325 352.148 43.2265 352.83 42.719L354.006 44.6982C352.915 46.0853 351.637 47.1848 350.171 47.9967C348.74 48.8087 347.018 49.2147 345.007 49.2147Z" fill="#3F4142"/>
+                    <path d="M314.761 49.2148V46.934L317.148 46.6489C317.855 46.5538 318.297 46.3479 318.473 46.0312C318.685 45.6827 318.792 45.0808 318.792 44.2255V20.0873C318.792 19.2954 318.668 18.7568 318.42 18.4717C318.208 18.155 317.731 17.9491 316.989 17.854L314.761 17.664V15.3832H331.677V17.664L329.238 17.9015C328.637 17.9649 328.213 18.1708 327.965 18.5193C327.753 18.836 327.647 19.4221 327.647 20.2774V44.3681C327.647 45.2234 327.753 45.7936 327.965 46.0787C328.177 46.3638 328.637 46.5538 329.344 46.6489L331.677 46.934V49.2148H314.761Z" fill="#3F4142"/>
+                    <path d="M270.51 64.6419V61.4617L273.216 61.0558C273.938 60.9655 274.412 60.7174 274.637 60.3115C274.863 59.8604 274.976 59.0484 274.976 57.8756V37.8473C274.976 36.3587 274.818 35.3438 274.502 34.8025C274.231 34.2612 273.6 33.9228 272.607 33.7875L269.969 33.5169L270.307 30.1337L283.839 29.3217L284.651 29.8631L284.922 36.291H285.125C286.163 33.9454 287.696 32.141 289.726 30.878C291.756 29.5698 294.147 28.9158 296.898 28.9158C299.425 28.9158 301.522 29.3894 303.191 30.3367C304.86 31.284 306.101 32.6372 306.913 34.3965C307.77 36.1557 308.198 38.2984 308.198 40.8245V58.3492C308.198 59.3416 308.311 60.0408 308.536 60.4468C308.807 60.8077 309.371 61.0332 310.228 61.1234L312.732 61.4617V64.6419H293.515V61.5294L295.613 61.1911C296.38 61.0558 296.876 60.8077 297.101 60.4468C297.327 60.0408 297.44 59.3416 297.44 58.3492V42.1101C297.44 40.2155 297.282 38.7269 296.966 37.6443C296.65 36.5166 296.132 35.7272 295.41 35.2761C294.733 34.825 293.763 34.5995 292.5 34.5995C291.192 34.5995 290.019 34.9152 288.982 35.5468C287.989 36.1783 287.178 37.1256 286.546 38.3886C285.96 39.6065 285.666 41.0951 285.666 42.8544V58.1462C285.666 59.1838 285.757 59.9055 285.937 60.3115C286.163 60.7174 286.614 60.9881 287.29 61.1234L289.726 61.5294V64.6419H270.51Z" fill="#3F4142"/>
+                    <path d="M244.662 79.5954C241.595 79.5954 238.979 79.3924 236.813 78.9865C234.648 78.6256 232.889 78.0843 231.536 77.3625C230.227 76.6859 229.258 75.8288 228.626 74.7913C227.995 73.7538 227.679 72.581 227.679 71.2729C227.679 69.8745 227.995 68.7017 228.626 67.7544C229.258 66.8071 230.16 66.0177 231.333 65.3862C232.505 64.7997 233.859 64.3261 235.392 63.9652V63.6946C233.408 63.1984 231.964 62.409 231.062 61.3264C230.16 60.1987 229.709 59.0033 229.709 57.7402C229.709 56.4321 230.07 55.2592 230.791 54.2217C231.513 53.1842 232.686 51.9212 234.31 50.4326V50.2296C232.731 49.3726 231.468 48.1997 230.521 46.7111C229.573 45.1774 229.1 43.2603 229.1 40.9598C229.1 38.2081 229.799 35.885 231.197 33.9905C232.641 32.0959 234.603 30.675 237.084 29.7277C239.565 28.7353 242.362 28.2391 245.474 28.2391C246.512 28.2391 247.572 28.3293 248.654 28.5097C249.782 28.6451 250.887 28.8706 251.97 29.1864C253.098 29.5021 254.158 29.9081 255.15 30.4043C256.052 27.8782 257.09 25.8709 258.263 24.3823C259.435 22.8937 260.969 22.1494 262.864 22.1494C263.766 22.1494 264.6 22.3298 265.367 22.6907C266.134 23.0516 266.743 23.5703 267.194 24.247C267.69 24.9236 267.938 25.7807 267.938 26.8182C267.938 27.991 267.532 29.0511 266.72 29.9983C265.909 30.9456 264.848 31.4193 263.54 31.4193C262.773 31.4193 262.119 31.2163 261.578 30.8103C261.082 30.4043 260.631 29.8856 260.225 29.254L259.345 27.8331C258.984 28.4195 258.646 29.0511 258.33 29.7277C258.014 30.3592 257.721 31.0809 257.451 31.8929C258.623 33.0206 259.593 34.3062 260.36 35.7497C261.127 37.1481 261.51 38.772 261.51 40.6215C261.51 42.9671 260.879 45.0647 259.616 46.9141C258.353 48.7636 256.526 50.2296 254.135 51.3122C251.789 52.3948 248.948 52.9361 245.61 52.9361C244.076 52.9361 242.655 52.8234 241.347 52.5978C240.084 52.3272 238.979 52.034 238.031 51.7182C237.49 52.3046 237.084 52.8234 236.813 53.2745C236.543 53.6804 236.407 54.1541 236.407 54.6954C236.407 55.2818 236.588 55.778 236.949 56.184C237.31 56.5448 237.851 56.8155 238.573 56.9959C239.294 57.1313 240.174 57.1989 241.211 57.1989H252.511C257.067 57.1989 260.45 57.9658 262.661 59.4995C264.871 60.9881 265.976 63.2661 265.976 66.3335C265.976 67.5514 265.773 68.7693 265.367 69.9873C264.961 71.2503 264.285 72.4457 263.337 73.5734C262.435 74.7462 261.172 75.7837 259.548 76.6859C257.924 77.5881 255.894 78.2873 253.459 78.7835C251.023 79.3248 248.091 79.5954 244.662 79.5954ZM245.474 75.671C247.504 75.671 249.218 75.4003 250.617 74.859C252.06 74.3177 253.143 73.5509 253.864 72.5585C254.586 71.6112 254.947 70.5286 254.947 69.3106C254.947 67.9574 254.496 66.9424 253.594 66.2658C252.692 65.6343 251.361 65.3185 249.602 65.3185H239.317C238.64 65.95 238.122 66.6718 237.761 67.4837C237.4 68.3408 237.219 69.1979 237.219 70.0549C237.219 71.9946 237.896 73.4155 239.249 74.3177C240.603 75.2199 242.678 75.671 245.474 75.671ZM245.407 48.944C247.166 48.944 248.497 48.2674 249.399 46.9141C250.301 45.5157 250.752 43.4859 250.752 40.8244C250.752 37.8022 250.256 35.5918 249.263 34.1935C248.271 32.7951 246.895 32.0959 245.136 32.0959C243.286 32.0959 241.933 32.8402 241.076 34.3288C240.264 35.7723 239.858 37.8022 239.858 40.4185C239.858 43.125 240.332 45.2225 241.279 46.7111C242.272 48.1997 243.647 48.944 245.407 48.944Z" fill="#3F4142"/>
+                    <path d="M205.283 64.3713V61.1911L208.26 60.7851C209.027 60.6498 209.523 60.3792 209.748 59.9732C209.974 59.5221 210.087 58.7101 210.087 57.5373V37.7797C210.087 36.246 209.951 35.2085 209.681 34.6672C209.41 34.0807 208.756 33.7199 207.718 33.5845L205.08 33.2462L205.418 29.8631L220.033 29.1864L220.845 29.6601V57.605C220.845 58.6425 220.958 59.3868 221.183 59.8378C221.409 60.2889 221.928 60.5821 222.74 60.7175L225.649 61.1911V64.3713H205.283ZM214.62 23.4351C212.545 23.4351 210.921 22.9389 209.748 21.9465C208.576 20.909 207.989 19.4881 207.989 17.6837C207.989 15.9696 208.553 14.5938 209.681 13.5563C210.854 12.5188 212.5 12 214.62 12C216.74 12 218.364 12.5188 219.492 13.5563C220.62 14.5486 221.183 15.9245 221.183 17.6837C221.183 19.4429 220.597 20.8413 219.424 21.8788C218.251 22.9163 216.65 23.4351 214.62 23.4351Z" fill="#3F4142"/>
+                    <path d="M175.849 65.6569L174.834 53.1392L178.488 52.8685C179.21 54.9886 180.067 56.7028 181.059 58.0109C182.052 59.3191 183.202 60.2889 184.51 60.9204C185.818 61.5069 187.262 61.8001 188.841 61.8001C190.78 61.8001 192.269 61.3715 193.306 60.5145C194.389 59.6123 194.93 58.3267 194.93 56.6577C194.93 55.575 194.615 54.7405 193.983 54.1541C193.397 53.5226 192.517 52.9813 191.344 52.5302C190.216 52.0791 188.796 51.6506 187.081 51.2446C185.457 50.7935 183.924 50.2973 182.48 49.756C181.037 49.1696 179.774 48.4704 178.691 47.6585C177.609 46.8465 176.751 45.8316 176.12 44.6136C175.534 43.3506 175.24 41.8169 175.24 40.0125C175.24 37.712 175.782 35.7272 176.864 34.0582C177.947 32.3891 179.458 31.1261 181.398 30.269C183.382 29.3669 185.706 28.9158 188.367 28.9158C190.171 28.9158 191.795 29.1413 193.239 29.5924C194.682 30.0435 195.945 30.6073 197.028 31.284L197.705 28.9158H200.682L201.494 40.2832L197.84 40.0125C196.983 37.3962 195.787 35.4565 194.254 34.1935C192.765 32.8853 190.961 32.2313 188.841 32.2313C187.081 32.2313 185.706 32.6147 184.713 33.3815C183.721 34.1033 183.225 35.1633 183.225 36.5617C183.225 37.5992 183.518 38.4337 184.104 39.0652C184.736 39.6968 185.638 40.2381 186.811 40.6892C187.984 41.1402 189.404 41.5913 191.074 42.0424C192.878 42.5386 194.502 43.0799 195.945 43.6663C197.389 44.2527 198.652 44.9745 199.734 45.8316C200.817 46.6435 201.629 47.6585 202.17 48.8764C202.757 50.0943 203.05 51.6055 203.05 53.4098C203.05 55.9359 202.463 58.1237 201.291 59.9732C200.118 61.7775 198.494 63.1759 196.419 64.1683C194.344 65.1156 191.931 65.5892 189.179 65.5892C187.284 65.5892 185.503 65.3411 183.834 64.8449C182.21 64.3938 180.811 63.7623 179.638 62.9503L178.826 65.6569H175.849Z" fill="#3F4142"/>
+                    <path d="M156.836 65.5892C153.137 65.5892 149.979 64.89 147.363 63.4916C144.747 62.0482 142.762 60.0183 141.409 57.402C140.056 54.7405 139.379 51.6055 139.379 47.9968C139.379 43.937 140.168 40.4862 141.747 37.6443C143.371 34.8025 145.581 32.6372 148.378 31.1487C151.175 29.6601 154.355 28.9158 157.919 28.9158C160.851 28.9158 163.399 29.4345 165.565 30.472C167.73 31.4644 169.399 32.9304 170.572 34.8701C171.79 36.8098 172.399 39.1329 172.399 41.8394C172.399 42.7416 172.353 43.6438 172.263 44.546C172.218 45.4481 172.083 46.3503 171.857 47.2525H150.543C150.588 49.6432 150.994 51.6731 151.761 53.3422C152.528 54.9661 153.611 56.2066 155.009 57.0636C156.407 57.8756 158.076 58.2816 160.016 58.2816C162.046 58.2816 163.896 57.9658 165.565 57.3343C167.234 56.7028 168.903 55.7104 170.572 54.3571L172.804 56.8607C171.135 59.5221 168.925 61.6422 166.174 63.221C163.467 64.7998 160.354 65.5892 156.836 65.5892ZM150.543 43.6663H161.978C162.024 43.0799 162.069 42.4935 162.114 41.9071C162.159 41.2756 162.181 40.6666 162.181 40.0802C162.181 37.4639 161.775 35.5468 160.963 34.3288C160.151 33.1109 158.934 32.5019 157.31 32.5019C155.956 32.5019 154.784 32.8853 153.791 33.6522C152.844 34.419 152.1 35.637 151.558 37.306C151.017 38.9299 150.679 41.05 150.543 43.6663Z" fill="#3F4142"/>
+                    <path d="M90.5936 65.2509V62.003L93.5708 61.5971C94.4279 61.5068 94.9917 61.2362 95.2624 60.7851C95.533 60.334 95.6684 59.4318 95.6684 58.0786V23.7734C95.6684 22.6456 95.5105 21.8788 95.1947 21.4728C94.9241 21.0217 94.3151 20.7285 93.3678 20.5932L90.5936 20.3225V17.0747H112.178C114.885 17.0747 117.478 17.3228 119.959 17.819C122.44 18.2701 124.741 19.0369 126.861 20.1195C128.981 21.2022 130.831 22.6456 132.409 24.45C133.988 26.2092 135.206 28.3745 136.063 30.9457C136.92 33.4717 137.349 36.4715 137.349 39.9449C137.349 44.2302 136.74 47.9742 135.522 51.1769C134.304 54.3345 132.5 56.9734 130.109 59.0935C127.718 61.1685 124.786 62.7248 121.313 63.7623C117.884 64.7547 113.96 65.2509 109.539 65.2509H90.5936ZM110.757 61.1234C113.283 61.1234 115.471 60.74 117.321 59.9731C119.17 59.2063 120.681 58.0109 121.854 56.387C123.072 54.718 123.974 52.5753 124.561 49.959C125.147 47.2976 125.44 44.0723 125.44 40.2832C125.44 35.9076 124.876 32.3215 123.749 29.5247C122.666 26.6829 121.087 24.5853 119.012 23.232C116.937 21.8788 114.434 21.2022 111.502 21.2022H106.968V60.7851C107.464 60.8753 108.028 60.9655 108.66 61.0558C109.336 61.1009 110.036 61.1234 110.757 61.1234Z" fill="#3F4142"/>
+                    <path d="M75.1648 49.2147V46.9549L77.1235 46.6664C77.628 46.5703 77.9544 46.3779 78.1028 46.0895C78.2512 45.7689 78.3254 45.1919 78.3254 44.3585V30.3189C78.3254 29.229 78.2363 28.4918 78.0583 28.1072C77.8802 27.6904 77.4499 27.434 76.7673 27.3379L75.0312 27.0975L75.2538 24.6934L84.8691 24.2126L85.4033 24.5492V44.4066C85.4033 45.1439 85.4775 45.6728 85.6259 45.9933C85.7743 46.3138 86.1155 46.5222 86.6497 46.6184L88.5639 46.9549V49.2147H75.1648ZM81.3079 20.1257C79.9428 20.1257 78.8744 19.7731 78.1028 19.0679C77.3312 18.3307 76.9454 17.321 76.9454 16.0388C76.9454 14.8208 77.3164 13.8431 78.0583 13.1059C78.8299 12.3686 79.9131 12 81.3079 12C82.7027 12 83.7711 12.3686 84.513 13.1059C85.2549 13.8111 85.6259 14.7887 85.6259 16.0388C85.6259 17.2889 85.2401 18.2826 84.4685 19.0198C83.6969 19.7571 82.6434 20.1257 81.3079 20.1257Z" fill="#3F4142"/>
+                    <path d="M42.9384 49.2147V46.9561L44.8655 46.6678C45.3794 46.6037 45.7167 46.4275 45.8773 46.1391C46.0378 45.8188 46.1181 45.2421 46.1181 44.4091V30.1845C46.1181 29.1272 46.0057 28.4064 45.7809 28.022C45.5882 27.6375 45.1385 27.3972 44.4319 27.3011L42.553 27.1089L42.7939 24.7061L52.4294 24.1294L53.0076 24.5139L53.2003 29.0792H53.3448C54.0836 27.4132 55.1756 26.1317 56.6209 25.2347C58.0663 24.3056 59.7685 23.8411 61.7278 23.8411C63.5264 23.8411 65.0199 24.1775 66.2083 24.8502C67.3967 25.523 68.28 26.4842 68.8581 27.7336C69.4684 28.9831 69.7735 30.5049 69.7735 32.299V44.7455C69.7735 45.4503 69.8538 45.9469 70.0144 46.2353C70.2071 46.4916 70.6086 46.6517 71.2188 46.7158L73.0014 46.9561V49.2147H59.3189V47.0042L60.8124 46.7639C61.3584 46.6678 61.7117 46.4916 61.8723 46.2353C62.0329 45.9469 62.1132 45.4503 62.1132 44.7455V33.212C62.1132 31.8665 62.0008 30.8092 61.776 30.0403C61.5511 29.2394 61.1818 28.6787 60.6679 28.3583C60.1861 28.038 59.4955 27.8778 58.5962 27.8778C57.6648 27.8778 56.8297 28.102 56.091 28.5506C55.3844 28.9991 54.8062 29.6719 54.3566 30.5689C53.939 31.4339 53.7302 32.4912 53.7302 33.7406V44.6013C53.7302 45.3382 53.7945 45.8508 53.923 46.1391C54.0835 46.4275 54.4047 46.6197 54.8865 46.7158L56.6209 47.0042V49.2147H42.9384Z" fill="#3F4142"/>
+                    <path d="M5 49.2148V46.8865L6.87979 46.5538C7.45818 46.4271 7.92411 46.2054 8.27758 45.8886C8.63104 45.5402 8.96844 44.8908 9.28977 43.9404L19.4599 15.3832H26.3043L36.5226 44.0355C36.8439 44.9541 37.1331 45.5718 37.3902 45.8886C37.6794 46.2054 38.1774 46.4271 38.8844 46.5538L40.5232 46.8865V49.2148H24.9065V46.8865L27.0754 46.6014C27.7181 46.5063 28.1037 46.2846 28.2322 45.9361C28.3608 45.556 28.3126 44.9541 28.0876 44.1305L26.2561 38.4761H14.6881L12.8565 43.9404C12.5995 44.7007 12.5352 45.3184 12.6637 45.7936C12.7923 46.2371 13.2743 46.5222 14.1097 46.6489L16.3751 46.934V49.2148H5ZM15.6039 35.8152H25.4367L20.7613 21.0376H20.5685L15.6039 35.8152Z" fill="#3F4142"/>
+
+            </svg>
+            </svg>
+          </a>
+        <nav class="desktop-nav">
+            <a href="#index" data-section="0" class="active">HOME</a>
+            <a href="#my-work" data-section="1">MY WORK</a>
+            <a href="#services" data-section="2">SERVICES</a>
+            <a href="#about-me" data-section="3">ABOUT ME</a>
+            <a href="#contact" data-section="4">CONTACT</a>
+        </nav>
+        <button class="hamburger-btn" aria-label="Open menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </header>
+
+    <nav class="mobile-nav">
+        <button class="close-btn" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <a href="#index" data-section="0">HOME</a>
+        <a href="#my-work" data-section="1">MY WORK</a>
+        <a href="#services" data-section="2">SERVICES</a>
+        <a href="#about-me" data-section="3">ABOUT ME</a>
+        <a href="#contact" data-section="4">CONTACT</a>
+    </nav>
+
+
+    <div class="social-media">
+        <a href="https://www.instagram.com/aniposada" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://www.youtube.com/@ZoluAi" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/aniposada/" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+    </div>
+
+    {/* This is the container for the horizontal scrolling sections */}
+    <div class="main-container">
+        {/* The <slot /> is where Astro will inject your page content (e.g., your sections from index.astro) */}
+        <slot />
+    </div>
+
+    {/* Your original JavaScript for navigation and scrolling */}
+    <script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const mainContainer = document.querySelector('.main-container');
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav a');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    const workSection = document.querySelector('#my-work');
+
+    // 👇 Nuevo: leer ?section= de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentSection = parseInt(urlParams.get("section") ?? "0") || 0;
+
+    let isScrolling = false;
+    let isMobile = window.innerWidth <= 768;
+    let canScroll = true;
+
+    if (workSection) {
+        workSection.addEventListener('mouseenter', () => { canScroll = false; });
+        workSection.addEventListener('mouseleave', () => { canScroll = true; });
+    }
+
+    function openMobileMenu() { if (mobileNav) mobileNav.classList.add('open'); }
+    function closeMobileMenu() { if (mobileNav) mobileNav.classList.remove('open'); }
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', openMobileMenu);
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMobileMenu);
+    }
+    mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+    function setupEventListeners() {
+        isMobile = window.innerWidth <= 768;
+        window.removeEventListener('wheel', handleWheel);
+        window.removeEventListener('keydown', handleKeydown);
+        window.removeEventListener('scroll', updateActiveNavOnScroll);
+        document.querySelectorAll('.desktop-nav a').forEach(link => link.removeEventListener('click', handleNavClick));
+        document.querySelectorAll('.mobile-nav a').forEach(link => link.removeEventListener('click', handleMobileNavClick));
+
+        if (isMobile) {
+            document.body.style.overflowY = 'auto';
+            if (mainContainer) (mainContainer as HTMLElement).style.transform = '';
+            document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', handleMobileNavClick));
+            window.addEventListener('scroll', updateActiveNavOnScroll);
+            updateActiveNavOnScroll();
+        } else {
+            document.body.style.overflowY = 'hidden';
+            navigateToSection(currentSection, false);
+            window.addEventListener('wheel', handleWheel, { passive: false });
+            window.addEventListener('keydown', handleKeydown);
+            document.querySelectorAll('.desktop-nav a').forEach(link => link.addEventListener('click', handleNavClick));
+            updateActiveState(currentSection);
+        }
+
+        const exploreBtn = document.querySelector('.primary-btn'); 
+        if (exploreBtn) {
+            exploreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToSection(1);
+            });
+        }
+    }
+
+    function updateActiveNavOnScroll() {
+        let currentSectionIndex = 0;
+        sections.forEach((section, index) => {
+            const sectionTop = (section as HTMLElement).offsetTop;
+            const sectionHeight = (section as HTMLElement).clientHeight;
+            if (window.scrollY >= sectionTop - sectionHeight / 2) {
+                currentSectionIndex = index;
+            }
+        });
+        updateActiveState(currentSectionIndex);
+    }
+
+    function updateActiveState(sectionIndex: number) {
+        currentSection = sectionIndex;
+        document.querySelectorAll('.desktop-nav a').forEach((link, index) => {
+            link.classList.toggle('active', index === sectionIndex);
+        });
+        document.querySelectorAll('.mobile-nav a').forEach((link, index) => {
+            link.classList.toggle('active', index === sectionIndex);
+        });
+        if (!isMobile) {
+            sections.forEach((section, index) => {
+                section.classList.toggle('active', index === sectionIndex);
+            });
+        }
+    }
+
+    function navigateToSection(sectionIndex: number, animate = true) {
+        if (isMobile || sectionIndex < 0 || sectionIndex >= sections.length) return;
+        
+        currentSection = sectionIndex;
+        const offset = -currentSection * 100;
+        if (mainContainer) {
+            (mainContainer as HTMLElement).style.transition = animate ? 'transform 1s cubic-bezier(0.77, 0, 0.175, 1)' : 'none';
+            (mainContainer as HTMLElement).style.transform = `translateX(${offset}vw)`;
+        }
+        updateActiveState(currentSection);
+
+        if (sections[sectionIndex].id === 'services') {
+            const serviceItems = document.querySelectorAll('.service-item');
+            serviceItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('is-visible');
+                }, index * 100);
+            });
+        }
+    }
+
+    function handleMobileNavClick(e: Event) {
+        e.preventDefault();
+        const target = e.currentTarget as HTMLAnchorElement;
+        const targetId = target.getAttribute('href');
+        if (targetId) {
+            document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function handleNavClick(e: Event) {
+        e.preventDefault();
+        const sectionIndex = parseInt((e.currentTarget as HTMLElement).getAttribute('data-section')!);
+        navigateToSection(sectionIndex);
+    }
+
+    function handleWheel(event: WheelEvent) {
+        if (isScrolling || !canScroll) return;
+        event.preventDefault();
+        isScrolling = true;
+        if (event.deltaY > 0) {
+            navigateToSection(currentSection + 1);
+        } else {
+            navigateToSection(currentSection - 1);
+        }
+        setTimeout(() => { isScrolling = false; }, 1500);
+    }
+    
+    function handleKeydown(event: KeyboardEvent) {
+        if (event.key === 'ArrowRight') navigateToSection(currentSection + 1);
+        else if (event.key === 'ArrowLeft') navigateToSection(currentSection - 1);
+    }
+    
+    setupEventListeners();
+    window.addEventListener('resize', setupEventListeners);
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+---
+export interface Props {
+  // The project prop is now a clean object directly from Firestore
+  project: any;
+}
+
+const { project } = Astro.props;
+
+// We can now access all properties directly, no more ".attributes"!
+const name = project.name ?? "Untitled Project";
+const role = project.role ?? "No role";
+const summary = project.summary ?? "No description";
+const tools = project.tools ?? []; // This is now a simple array of strings: ["Figma", "Astro"]
+const slug = project.slug ?? "";
+const imageUrl = project.heroImage ?? null; // This is now a direct URL from Cloudinary/Storage
+const altText = `Image for the project ${name}`;
+---
+
+<div class="bg-white rounded-2xl  overflow-hidden flex flex-col h-full transition-transform duration-300 hover:shadow-xl hover:-translate-y-1 max-w-sm mx-auto">
+  {imageUrl && (
+    <a href={slug ? `/work/${slug}` : "#"}>
+      <img
+        src={imageUrl}
+        alt={altText}
+        class="w-full h-56 object-cover"
+        loading="lazy"
+      />
+    </a>
+  )}
+  <div class="p-6 flex flex-col flex-grow bg-white">
+    <p class="text-sm font-semibold tracking-wide uppercase mb-1" style="color:#ff715d">
+      {role}
+    </p>
+    <h3 class="text-2xl font-bold mb-2 text-gray-900">
+      <a href={slug ? `/work/${slug}` : "#"} class="hover:underline">
+        {name}
+      </a>
+    </h3>
+    <p class="text-base mb-4 text-gray-600 line-clamp-2">
+      {summary}
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      {/* The loop is simpler now since 'tools' is just an array of strings */}
+      {tools.map((tool: string) => (
+        <span
+          class="text-sm font-semibold px-4 py-1 rounded-full"
+          style="background-color:#ffe5e0; color:#ff715d"
+        >
+          {tool}
+        </span>
+      ))}
+    </div>
+    {slug ? (
+      <a
+        href={`/work/${slug}`}
+        class="font-bold text-base mt-auto self-start hover:underline text-[#ff715d]"
+      >
+        View Case Study →
+      </a>
+    ) : (
+      <span class="font-bold text-base mt-auto self-start text-gray-400 cursor-not-allowed">
+        No Case Study Available
+      </span>
+    )}
+  </div>
+</div>
+
+<style>
+  /* Your styles remain unchanged */
+  #carousel::-webkit-scrollbar {
+    display: none;
+  }
+  #carousel {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+

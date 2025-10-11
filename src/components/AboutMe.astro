@@ -1,0 +1,43 @@
+---
+// src/components/AboutMe.astro
+// This component contains the "About Me" section content.
+// The Lottie animation and image are hardcoded, just like in the original design.
+---
+<section id="about-me" class="section">
+    <h2 class="section-title">About Me</h2>
+    <div class="container">
+        <div class="about-content">
+            <div class="about-photo-container">
+                <dotlottie-player 
+                    src="https://lottie.host/e9bb1186-c7f4-4181-8a73-bdff02f8440c/WCRkGPlthD.lottie" 
+                    background="transparent" 
+                    speed="1" 
+                    loop 
+                    autoplay>
+                </dotlottie-player>
+                <img src="https://res.cloudinary.com/dqbxkmkph/image/upload/v1759879976/ANaM_ynwj0v.png" alt="Ana Maria Posada">
+            </div>
+            <div class="text-left">
+                <h2 class="text-5xl font-bold mb-4">Meet Ana Maria</h2>
+                <p class="mb-4">
+                    Ana Maria Posada is a multidisciplinary designer with the soul of a musician and the heart of an artist. Currently based in Vancouver, Canada, she originally hails from Colombia, where her artistic roots were nurtured. She holds a bachelor's degree in Social Communication and Journalism, a diploma in Digital Design, and has spent countless years immersed in music studies.
+                  </p>
+                  <p class="mb-4">
+                    Her professional journey has led her to collaborate with a diverse range of clients, from independent entrepreneurs to creative agencies like Rethink, 123W, and QuickFrame, as well as global brands such as IBM, Science World, and Electronic Arts. Ana’s expertise spans across web design, UI/UX, branding, digital assets, animation, photography, and videography,often enhanced with the use of AI-powered tools to push creativity further.
+                  </p>
+                  <p class="mb-8">
+                    Driven by a passion for crafting visual content with meaningful impact, Ana is an eternally curious creator who blends creativity, technology, and strategy to design experiences that are not only beautiful but also intuitive and human.
+                  </p>
+                <div class="flex gap-4">
+                    <a href="https://res.cloudinary.com/dqbxkmkph/image/upload/v1759880005/Resume_Ana_Maria_Posada_-2025_mohnwb.pdf"class="secondary-btn">CHECK MY RESUME</a>
+                    <a href="https://calendar.app.google/Ltp15FQaPxhoeaZS9" class="primary-btn">LET'S WORK TOGETHER</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="absolute bottom-10 right-12 font-bold  animate-pulse flex flex-row items-center gap-2 text-grey-100/35">
+        <p>← </p>
+        <i class="fa-solid fa-computer-mouse"></i>
+        <p>→</p>
+      </div> -->
+</section>

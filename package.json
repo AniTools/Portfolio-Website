@@ -1,0 +1,36 @@
+{
+  "name": "portfolio-frontend",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && firebase deploy",
+    "deploy:hosting": "npm run build && firebase deploy --only hosting",
+    "deploy:functions": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.4.4",
+    "@astrojs/react": "^4.4.0",
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "embla-carousel": "^8.6.0",
+    "firebase": "^12.3.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.536.0",
+    "marked": "^15.0.12",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "resend": "^6.0.3",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "@types/marked": "^5.0.2",
+    "astro": "^5.14.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

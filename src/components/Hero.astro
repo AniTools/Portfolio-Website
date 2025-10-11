@@ -1,0 +1,31 @@
+---
+// src/components/Hero.astro
+// This is a reusable component for your hero section.
+// No JavaScript is needed here since it's just displaying content.
+---
+<section id="index" class="section active">
+    <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center w-full">
+            <div class="text-left">
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">ANA MARIA<br>POSADA</h1>
+                <p class="text-xl md:text-2xl my-4" style="color: var(--primary-color);">Digital Designer | UI/UX | Web Designer</p>
+                <p class="mb-8">I craft beautiful, personalized, and interactive digital experiences, from unique brand identities and thoughtful UI/UX design to AI-enhanced, fully developed, responsive websites that engage and inspire.</p>
+                </p>
+                <a data-section="1" class="primary-btn gap-2 explore-btn">
+                    Explore My Work
+                    <i class="fa-solid fa-rocket text-lg"></i>
+                  </a>
+            </div>
+            <div>
+                <dotlottie-wc 
+                src="https://lottie.host/08cb3a32-e4c4-40f8-854b-851d2988fff8/66Mw3tUnLk.lottie" 
+                speed="1" 
+                autoplay 
+                loop
+                class="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] mx-auto">
+              </dotlottie-wc>
+            </div>
+        </div>
+    </div>
+    <p class="absolute bottom-10 right-10 font-bold animate-pulse"> Scroll to See More → </p>
+</section>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(firebase hosting:channel:list:*)",
+      "Bash(cat:*)",
+      "Bash(test -d dist)",
+      "Bash(test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm install)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
