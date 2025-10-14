@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "anidesingit-portfolio",
   storageBucket: "anidesingit-portfolio.firebasestorage.app",
   messagingSenderId: "397990432239",
-  appId: "1:397990432239:web:e165d77c83330c93bbba1a"
+  appId: "1:397990432239:web:243888006242b9ebbbba1a"
 };
 
 // Initialize Firebase
