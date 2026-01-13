@@ -1,38 +1,45 @@
 ---
 // src/components/Hero.astro
-// This is a reusable component for your hero section.
-// No JavaScript is needed here since it's just displaying content.
 ---
-<section id="index" class="section active">
-    <div class="container">
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center w-full">
-            <div class="text-left">
-                <h1 class="text-6xl md:text-7xl font-bold leading-tight">ANA MARIA<br>POSADA</h1>
-                <p class="text-xl md:text-2xl my-4" style="color: var(--primary-color);">Product Designer · UI/UX & Web</p>
-                    <p class=" leading-8 mb-2 font-regular ">
-                        I turn <strong>ideas into functional digital products</strong>. 
-                        By blending years of design experience with a <strong>love for development</strong>, 
-                        I use <strong>AI to elevate my process</strong> and create meaningful, interactive experiences.
+<section id="index" class="section active relative min-h-screen flex items-center">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full">
+            <div class="text-left order-2 md:order-1">
+                <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight">
+                    ANA MARIA<br>POSADA
+                </h1>
+                
+                <p class="text-lg md:text-2xl my-4 font-medium" style="color: var(--primary-color);">
+                    Product Designer · UI/UX & Web
+                </p>
+
+                <p class="text-base md:text-lg leading-relaxed md:leading-8 mb-6 font-normal">
+                    I turn <strong>ideas into functional digital products</strong>. 
+                    By blending years of design experience with a <strong>love for development</strong>, 
+                    I use <strong>AI to elevate my process</strong> and create meaningful, interactive experiences.
+                    <br class="hidden md:block" /> <span class="block mt-4 md:mt-0">
                         From <strong>unique brand identities</strong> to <strong>fully developed websites</strong>, 
                         I build with <strong>intention and care</strong>.
-                    </p>
-                    <br>
+                    </span>
+                </p>
                   
-                <a data-section="1" class="primary-btn gap-2 explore-btn">
+                <a data-section="1" class="primary-btn inline-flex items-center gap-2 explore-btn px-6 py-3 md:px-8 md:py-4">
                     Explore My Work
                     <i class="fa-solid fa-rocket text-lg"></i>
-                  </a>
+                </a>
             </div>
-            <div>
+
+            <div class="order-1 md:order-2">
                 <dotlottie-wc 
-                src="https://lottie.host/08cb3a32-e4c4-40f8-854b-851d2988fff8/66Mw3tUnLk.lottie" 
-                speed="1" 
-                autoplay 
-                loop
-                class="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] mx-auto">
-              </dotlottie-wc>
+                    src="https://lottie.host/08cb3a32-e4c4-40f8-854b-851d2988fff8/66Mw3tUnLk.lottie" 
+                    speed="1" autoplay loop
+                    class="w-[280px] h-[280px] md:w-[450px] md:h-[450px] lg:w-[500px] lg:h-[500px] mx-auto">
+                </dotlottie-wc>
             </div>
         </div>
     </div>
-    <p class="absolute bottom-10 right-10 font-bold animate-pulse"> Scroll to See More → </p>
+    
+    <p class="hidden md:block absolute bottom-10 right-10 font-bold animate-pulse"> 
+        Scroll to See More → 
+    </p>
 </section>
