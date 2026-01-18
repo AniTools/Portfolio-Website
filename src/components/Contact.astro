@@ -12,6 +12,7 @@
         </p>
 
         <form class="contact-form space-y-2" id="contact-form" action="https://formspree.io/f/mdaaoqzo" method="POST">
+
           <input
             type="text"
             id="name"
@@ -19,9 +20,7 @@
             placeholder="Your full name"
             class="w-full p-3 border rounded-lg"
             required
-      
           />
-
           <input
             type="email"
             id="email"
@@ -30,11 +29,18 @@
             class="w-full p-3 border rounded-lg"
             required
           />
-
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Your phone number"
+            class="w-full p-3 border rounded-lg"
+            required
+          />
           <textarea
             id="message"
             name="message"
-            rows="4"
+            rows="3"
             placeholder="Your message..."
             class="w-full p-3 border rounded-lg"
             required
