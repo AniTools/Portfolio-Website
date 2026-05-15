@@ -150,6 +150,22 @@
           background-color: var(--primary-color);
           color: white;
         }
+        .book-btn {
+          background-color: var(--primary-color);
+          color: white;
+          padding: 0.45rem 1.1rem;
+          border-radius: 999px;
+          font-weight: 600;
+          font-size: 0.85rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+        }
+        .book-btn:hover {
+          background-color: transparent;
+          color: var(--primary-color);
+          outline: 2px solid var(--primary-color);
+        }
         .secondary-btn {
           background-color: var(--primary-color);
           color: white;
@@ -534,6 +550,7 @@
             <a href="#services" data-section="2">SERVICES</a>
             <a href="#about-me" data-section="3">ABOUT ME</a>
             <a href="#contact" data-section="4">CONTACT</a>
+            <a href="https://calendar.app.google/Ltp15FQaPxhoeaZS9" target="_blank" rel="noopener" class="book-btn">✦ Book a Discovery Call</a>
         </nav>
         <button class="hamburger-btn" aria-label="Open menu">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -627,7 +644,7 @@
             navigateToSection(currentSection, false);
             window.addEventListener('wheel', handleWheel, { passive: false });
             window.addEventListener('keydown', handleKeydown);
-            document.querySelectorAll('.desktop-nav a').forEach(link => link.addEventListener('click', handleNavClick));
+            document.querySelectorAll('.desktop-nav a[data-section]').forEach(link => link.addEventListener('click', handleNavClick));
             updateActiveState(currentSection);
         }
 
