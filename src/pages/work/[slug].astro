@@ -1,6 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
-import { db } from '../../lib/firebase';
+import { db } from '../../lib/firebase.js';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 // 1. IMPORT 'marked'
@@ -40,23 +40,12 @@ if (!project) {
 // 2. PARSE THE MARKDOWN *AFTER* 'project' IS DEFINED
 const renderedBodyHtml = project.body ? marked.parse(project.body) : '';
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>My Portfolio</title>
-    
-    <script 
-      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" 
-      type="module"
-    ></script>
-
-    </head>
-  <body>
-    <slot /> 
-  </body>
-</html>
-<PageLayout title={`${project.name} – AniDesignIt`}>
+<PageLayout
+  title={project.name}
+  description={project.summary ?? `Case study: ${project.name} by Ana Posada – UI/UX & Brand Designer.`}
+  image={project.heroImage}
+  slug={project.slug}
+>
   <!-- Page Header -->
   <div class="text-center mb-12 animate-fade-in-up">
     <h1 class="text-4xl md:text-6xl font-bold tracking-tight" style="font-family: var(--title-font);">
